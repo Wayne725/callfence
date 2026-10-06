@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "callfence"
+version = "0.1.0"
+description = "Offline consumer request checks against OpenAPI, with source-linked evidence and CI gates."
+requires-python = ">=3.11"
+dependencies = ["jsonschema[format-nongpl]>=4.23,<5"]
+license = "MIT"
+readme = "README.md"
+
+[project.scripts]
+callfence = "callfence.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+callfence = ["assets/*", "examples/*.json"]
