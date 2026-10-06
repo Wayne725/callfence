@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>CallFence · Consumer contract review</title><style>__CSS__</style></head>
+<body>
+<header><a href="#top" class="brand">CALLFENCE <span>REQUEST CONTRACTS / 01</span></a><span id="run-id" class="mono"></span></header>
+<main id="top">
+<section class="intro"><div><p class="eyebrow">Before a release reaches your users</p><h1>Find the call<br>that no longer fits.</h1><p class="lead">Compare the requests your client sends with the API contract your server declares.</p></div><aside class="context"><p class="eyebrow">Consumer</p><h2 id="consumer"></h2><div id="sources"></div></aside></section>
+<section class="metrics" aria-label="Verification summary"><div><span id="count-cases"></span><p>Request cases</p></div><div class="danger"><span id="count-regressions"></span><p id="regression-label">New failures</p></div><div class="caution"><span id="count-blocked"></span><p>Need review</p></div><div><span id="count-passed"></span><p>Candidate passed</p></div></section>
+<section class="workspace"><div class="case-column"><div class="toolbar"><h2>Consumer calls</h2><label class="sr-only" for="search">Search request cases</label><input id="search" type="search" placeholder="Search route, name or id"><label class="sr-only" for="filter">Filter request cases</label><select id="filter"><option value="all">All cases</option><option value="regression">New failures</option><option value="needs_review">Need review</option><option value="stable">Stable</option><option value="fixed">Fixed</option><option value="existing_failure">Existing failures</option></select></div><p id="case-count" class="muted"></p><div id="case-list" role="list"></div></div>
+<article class="detail" aria-live="polite"><p class="eyebrow">Source-linked evidence</p><h2 id="case-title"></h2><p id="case-route" class="route"></p><div id="case-outcome"></div><div class="snapshot-controls" id="snapshot-controls"><button id="before" type="button">Baseline</button><button id="after" type="button">Candidate</button></div><p id="finding-summary"></p><div id="findings"></div></article></section>
+<footer><div><strong>Evidence has boundaries.</strong><p id="scope"></p><p>Parameters are typed JSON samples, not serialized HTTP traffic. Passing samples do not prove every client call will pass.</p></div><a id="json-download" download="callfence-results.json">Export results JSON</a></footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__JS__</script>
+</body></html>
