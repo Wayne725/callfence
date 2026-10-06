@@ -1,0 +1,196 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Workshop inventory API",
+    "version": "2.0-candidate"
+  },
+  "paths": {
+    "/v1/jobs/submit": {
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/uploads/confirm": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadConfirmation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/items": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/orders": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "shipping"
+                ],
+                "properties": {
+                  "shipping": {
+                    "enum": [
+                      "pickup"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/reports/monthly": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "security": [
+          {
+            "reportKey": []
+          }
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/deliveries": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "item_id"
+                ],
+                "properties": {
+                  "item_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/catalog/entries": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/batches/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 20
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UploadConfirmation": {
+        "type": "object",
+        "required": [
+          "size_bytes"
+        ],
+        "properties": {
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "reportKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Report-Key"
+      }
+    }
+  }
+}
