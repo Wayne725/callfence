@@ -1,0 +1,26 @@
+name: Verify consumer gate
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install .
+      - run: python -m unittest discover -s tests -v
+      - run: callfence demo --out runs/ci-demo
+      - run: callfence check runs/ci-demo/inputs/baseline.json runs/ci-demo/inputs/consumer.json --out runs/healthy
+      - name: Prove the broken candidate fails the gate
+        run: |
+          python - <<'PY'
+          import subprocess
+          result = subprocess.run(['callfence', 'compare', 'runs/ci-demo/inputs/baseline.json', 'runs/ci-demo/inputs/candidate.json', 'runs/ci-demo/inputs/consumer.json', '--out', 'runs/broken'])
+          assert result.returncode == 1, f'Expected a contract failure (1), got {result.returncode}'
+          PY
