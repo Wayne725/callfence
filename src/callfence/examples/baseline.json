@@ -1,0 +1,180 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Workshop inventory API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/v1/catalog/items": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/jobs/submit": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/uploads/confirm": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadConfirmation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/items": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ]
+      }
+    },
+    "/v1/orders": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "shipping"
+                ],
+                "properties": {
+                  "shipping": {
+                    "enum": [
+                      "courier",
+                      "pickup"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/batches/{batch_id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "parameters": [
+          {
+            "name": "batch_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 50
+            }
+          }
+        ]
+      }
+    },
+    "/v1/reports/monthly": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        }
+      }
+    },
+    "/v1/deliveries": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Synthetic response; not validated by CallFence."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "item_id"
+                ],
+                "properties": {
+                  "item_id": {
+                    "type": "string"
+                  },
+                  "fulfillment_method": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UploadConfirmation": {
+        "type": "object",
+        "required": [
+          "file_size"
+        ],
+        "properties": {
+          "file_size": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}
